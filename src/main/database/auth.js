@@ -1,17 +1,24 @@
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 import db from './db'
 
+const SECRET_KEY = 'Michaela'
+
 export function loginUser(username, password) {
-  const stmt = db.prepare('SELECT * FROM users WHERE username = ?')
-  const user = stmt.get(username)
+  db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, user) => {
+    if (err) return callback(err)
+    if (!user) return callback(new Error('User not found'))
 
-  if (!user) return { success: false, message: 'User not found' }
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) return callback(err)
+      if (!isMatch) return callback(new Error('Invalid password'))
 
-  const validPassword = bcrypt.compareSync(password, user.password)
-
-  if (!validPassword) return { success: false, message: 'Incorrect password' }
-
-  return { success: true, message: 'Login successful', user }
+      const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, {
+        expiresIn: '1h'
+      })
+      callback(null, { token, user: { id: user.id, username: user.username } })
+    })
+  })
 }
 
 // export function registerUser(username, password) {

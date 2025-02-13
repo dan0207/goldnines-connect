@@ -1,22 +1,32 @@
-import { useEffect, useState } from 'react'
-import Users from './components/Users'
-import Login from './components/Login'
+import { Routes, Route } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import ServiceDesk from './pages/ServiceDesk'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import NotFound from './pages/NotFound'
+import MainLayout from './layouts/MainLayout'
+import AuthLayout from './layouts/AuthLayout'
+
+// import ThemeProvider from './components/ThemeProvider'   //for theme
+
 function App() {
-  const [user, setUser] = useState(null)
+  return (
+    <>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/servicedesk" element={<ServiceDesk />} />
+        </Route>
 
-  const handleLogout = () => {
-    localStorage.removeItem('user')
-    setUser(null)
-  }
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) setUser(JSON.parse(storedUser))
-  }, [])
-
-  if (!user) <Users user={user} onLogout={handleLogout} />
-
-  return <Login onLogin={setUser} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  )
 }
 
 export default App

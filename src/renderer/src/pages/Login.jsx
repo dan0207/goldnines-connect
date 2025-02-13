@@ -1,28 +1,13 @@
-import { useEffect, useState } from 'react'
-import logoLight from './../assets/images/logo-black.png'
+import { useState } from 'react'
+import logoLight from '../assets/images/logo-black.png'
 
-function Login({ onLogin }) {
+function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
 
-  const handleLogin = async () => {
-    e.preventDefault()
-    const response = await window.auth.login({ username, password })
-    setMessage(response.message)
-    if (response.success) {
-      onLogin(response.user)
-      localStorage.setItem('user', JSON.stringify(response.user))
-      window.location.reload()
-    } else {
-      setError(response.message)
-    }
-  }
-
-  const handleRegister = async () => {
-    e.preventDefault()
-    const response = await window.auth.register({ username, password })
-    setMessage(response.message)
+  const handleLogin = () => {
+    console.log('Success')
   }
 
   return (
@@ -43,6 +28,7 @@ function Login({ onLogin }) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
+              {console.log(username)}
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
@@ -55,6 +41,7 @@ function Login({ onLogin }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {console.log(password)}
             </div>
             <div className="mb-3 form-check">
               <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -62,17 +49,12 @@ function Login({ onLogin }) {
                 Remember me
               </label>
             </div>
-            <button
-              type="submit"
-              className="btn btn-primary w-100 rounded-4 mb-2"
-              onClick={handleLogin}
-            >
+            <button className="btn btn-primary w-100 rounded-4 mb-2" onClick={handleLogin}>
               Login
             </button>
-            <button type="" className="btn btn-sm btn-outline-primary w-100 rounded-4 mb-3">
+            <button className="btn btn-sm btn-outline-primary w-100 rounded-4 mb-3">
               Register
             </button>
-            {message && <p className="text-red-500">{message}</p>}
             {console.log(message)}
           </form>
           <div className="d-flex align-items-center">

@@ -2,11 +2,10 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import UsersAPI from './database/users.js'
-import { loginUser, registerUser } from './database/auth.js'
+// import UsersAPI from './database/users.js'
+// import { loginUser } from './database/auth.js'
 
 function createWindow() {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
@@ -37,18 +36,23 @@ function createWindow() {
   }
 }
 
-ipcMain.handle('login', async (_, { username, password }) => {
-  return loginUser(username, password)
-})
+// ipcMain.handle('login', async (event, { username, password }) => {
+//   return new Promise((resolve) => {
+//     loginUser(username, password, (err, data) => {
+//       if (err) resolve({ success: false, message: err.message })
+//       else resolve({ success: true, token: data.token, user: data.user })
+//     })
+//   })
+// })
 
 // ipcMain.handle('register', async (_, { username, password }) => {
 //   return registerUser(username, password)
 // })
 
-ipcMain.handle('create-user', (_, user) => UsersAPI.createUser(user))
-ipcMain.handle('read-users', () => UsersAPI.readUsers())
-ipcMain.handle('update-user', (_, user) => UsersAPI.updateUser(user))
-ipcMain.handle('delete-user', (_, id) => UsersAPI.deleteUser(id))
+// ipcMain.handle('create-user', (_, user) => UsersAPI.createUser(user))
+// ipcMain.handle('read-users', () => UsersAPI.readUsers())
+// ipcMain.handle('update-user', (_, user) => UsersAPI.updateUser(user))
+// ipcMain.handle('delete-user', (_, id) => UsersAPI.deleteUser(id))
 
 // ipcMain.handle('create-department', (_, department) => DepartmentsAPI.createDepartment(department))
 // ipcMain.handle('read-departments', () => DepartmentsAPI.readDepartments())
