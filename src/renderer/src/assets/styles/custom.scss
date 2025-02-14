@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'Poppins';
-    src: url('../../assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Regular.ttf');
 }
 
 $primary: #000000;
-$font-family-base: 'Poppins', serif;
+$font-family-base: 'Poppins';
 
 @import '../node_modules/bootstrap/scss/bootstrap';

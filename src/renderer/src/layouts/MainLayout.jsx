@@ -5,10 +5,11 @@ import SideNavigation from '../components/SideNavigation'
 function MainLayout() {
   return (
     <>
-      <div className="">
-        {/* <TopNavigation /> */}
+      <div className="d-flex">
         <SideNavigation />
-        {/* <Outlet /> */}
+        <div className="m-4 bg-light shadow-lg border rounded-3 w-100">
+          <Outlet />
+        </div>
       </div>
     </>
   )

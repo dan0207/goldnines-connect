@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logoLight from '../assets/images/logo-black.png'
+import logoBlack from '../assets/images/logos/logo-black.png'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -14,7 +14,7 @@ function Login() {
     <>
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="shadow-lg p-4 rounded-4" style={{ width: '20rem' }}>
-          <img src={logoLight} className="img-fluid d-flex mx-auto mb-3" width={80} alt="" />
+          <img src={logoBlack} className="img-fluid d-flex mx-auto mb-3" width={80} alt="" />
           <h2 className="text-center  mb-3">LOGIN</h2>
           <form>
             <div className="mb-3">
