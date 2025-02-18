@@ -1,3 +1,4 @@
+import { Tooltip } from 'bootstrap'
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
 
 const COLORS = ['#16C60C', '#0078D7', '#FFF100', '#E81224']
@@ -23,7 +24,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 function CustomPieChart({ data }) {
   return (
     <>
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart width={200} height={200}>
           <Pie
             data={data}
@@ -32,7 +33,6 @@ function CustomPieChart({ data }) {
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={80}
-            s
             dataKey="value"
           >
             {data.map((entry, index) => (
@@ -44,8 +44,9 @@ function CustomPieChart({ data }) {
               />
             ))}
           </Pie>
+          {/* <Tooltip /> */}
+          <Legend iconType="circle" />
         </PieChart>
-        <Legend />
       </ResponsiveContainer>
     </>
   )

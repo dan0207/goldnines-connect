@@ -1,7 +1,13 @@
+import { useContext } from 'react'
 import logoBlack from '../assets/images/logos/logo-black.png'
+import logoWhite from '../assets/images/logos/logo-white.png'
 import id from '../assets/images/photos/id.jpg'
+import ThemeContext from '../contexts/ThemeContext'
+import ThemeSwitch from './ThemeSwitch'
 
 function SideNavigation() {
+  const { darkMode, toggleDarkTheme } = useContext(ThemeContext)
+
   return (
     <>
       <div
@@ -12,7 +18,7 @@ function SideNavigation() {
           href="/"
           className="d-flex align-items-center justify-content-center link-body-emphasis p-3 mt-2 text-decoration-none"
         >
-          <img src={logoBlack} width={35} height={35} />
+          <img src={!darkMode ? logoBlack : logoWhite} width={35} height={35} />
           <span className="ms-2 fs-4">Michaela</span>
         </a>
 
@@ -54,16 +60,17 @@ function SideNavigation() {
           </li>
         </ul>
         <hr className="m-0" />
-        <div className="dropdown p-3">
+        <div className="dropdown p-3 d-flex">
           <a
             href="#"
-            className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+            className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle me-auto"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
             <img src={id} alt="" width="32" height="32" className="rounded-circle me-2" />
             <strong>Dan</strong>
           </a>
+          <ThemeSwitch />
           <ul className="dropdown-menu text-small shadow">
             <li>
               <a className="dropdown-item" href="#">
